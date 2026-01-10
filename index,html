@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Davidgreat | Data Analyst Portfolio</title>
+</head>
+<body>
+  <h1>Davidgreat</h1>
+  <p>Data Analyst | Dashboard Visualization | Research Analysis</p>
+
+  <h2>Projects</h2>
+
+  <ul>
+    <li>
+      <strong>Sales Dashboard Analysis</strong><br>
+      Tool: Power BI<br>
+      <a href="projects/sales-dashboard.html">View Project</a>
+    </li>
+
+    <li>
+      <strong>Excel Data Cleaning and Analysis</strong><br>
+      Tool: Excel<br>
+      <a href="projects/excel-analysis.html">View Project</a>
+    </li>
+  </ul>
+</body>
+</html>
