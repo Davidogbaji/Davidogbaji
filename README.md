@@ -3,7 +3,7 @@
 Here are some ideas to get you started:
 
 - 🔭 These are some of the things I have worked on:
-  ![X dataset result](Screenshot (74).png)
+  ![X dataset result](1.png)
   
 - 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
