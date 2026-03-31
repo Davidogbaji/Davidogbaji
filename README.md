@@ -15,6 +15,8 @@ I build dashboards that help organizations understand their data and create web 
 - 🔭 These are some of the things I have worked on:
   ![dataset result](1.png)
    ![x dataset result](2.png)
+  ![x dataset result](3.png)
+  
   
 
 
