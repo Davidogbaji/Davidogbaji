@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Icha David Ogbaji | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --sage: #3d6b5e;
+    --sage-light: #5a9485;
+    --gold: #c8973a;
+    --gold-light: #e6b86a;
+    --mist: #e8ede9;
+    --border: rgba(61,107,94,0.18);
+    --shadow: rgba(13,13,13,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--sage);
+  }
+
+  .nav-brand span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn-resume {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--sage);
+    border: none;
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-resume:hover { background: var(--gold); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 4rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-shape {
+    position: absolute;
+    top: -10%; right: -5%;
+    width: 55vw; height: 110vh;
+    background: linear-gradient(135deg, var(--mist) 0%, rgba(90,148,133,0.12) 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+
+  .hero-bg-dots {
+    position: absolute; bottom: 5%; left: 2%;
+    width: 200px; height: 200px;
+    background-image: radial-gradient(circle, var(--sage) 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    opacity: 0.15;
+  }
+
+  .hero-left { position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .hero-heading em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: 480px;
+  }
+
+  .hero-roles {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .role-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border: 1.5px solid var(--sage);
+    color: var(--sage);
+    border-radius: 2px;
+  }
+
+  .hero-mission {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.7;
+    max-width: 460px;
+    padding-left: 1rem;
+    border-left: 3px solid var(--gold);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--sage);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: var(--ink); }
+
+  .btn-secondary {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--sage);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    border-bottom: 1.5px solid var(--sage);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .hero-photo-frame {
+    position: relative;
+    width: 360px; height: 420px;
+  }
+
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px;
+    width: 100%; height: 100%;
+    border: 2px solid var(--gold);
+    z-index: 0;
+  }
+
+  .hero-photo-frame img,
+  .hero-photo-placeholder {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(10%);
+  }
+
+  .hero-photo-placeholder {
+    background: linear-gradient(135deg, #d0cfc8 0%, #b8c4be 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.75rem;
+    color: #888;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+  }
+
+  .hero-stat-badge {
+    position: absolute;
+    bottom: -18px; right: -18px;
+    z-index: 2;
+    background: var(--sage);
+    color: var(--cream);
+    padding: 1rem 1.2rem;
+    text-align: center;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .hero-stat-badge .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat-badge .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--mist);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 0.97rem;
+    color: #3a3a3a;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .stat-card {
+    padding: 1.5rem;
+    background: var(--cream);
+    border-left: 3px solid var(--sage);
+  }
+
+  .stat-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--sage);
+    display: block;
+  }
+
+  .stat-card .desc {
+    font-size: 0.78rem;
+    color: #666;
+    letter-spacing: 0.04em;
+    margin-top: 0.2rem;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-image-wrap {
+    width: 100%; aspect-ratio: 4/5;
+    position: relative;
+  }
+  .about-image-wrap::after {
+    content: '';
+    position: absolute; bottom: -12px; right: -12px;
+    width: 80%; height: 80%;
+    border: 2px solid var(--sage-light);
+    z-index: 0;
+  }
+  .about-image-wrap img,
+  .about-img-placeholder {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: relative; z-index: 1;
+    display: block;
+  }
+  .about-img-placeholder {
+    background: linear-gradient(135deg, #c8d4cf 0%, #a8bab4 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* ─── TECH STACK ─── */
+  #stack {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  #stack .section-title { color: var(--cream); }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .stack-card {
+    padding: 2rem;
+    border: 1px solid rgba(245,240,232,0.12);
+    position: relative;
+    transition: border-color 0.3s, transform 0.25s;
+    overflow: hidden;
+  }
+  .stack-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .stack-card:hover { border-color: rgba(200,151,58,0.3); transform: translateY(-4px); }
+  .stack-card:hover::before { transform: scaleX(1); }
+
+  .stack-card-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+    display: block;
+  }
+  .stack-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .stack-tools {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    background: rgba(245,240,232,0.08);
+    color: var(--gold-light);
+    border: 1px solid rgba(200,151,58,0.25);
+  }
+
+  /* ─── PROJECTS ─── */
+  #projects { background: var(--cream); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #fff;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow);
+  }
+
+  .project-img {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #d4e0dc 0%, #b8cdc6 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: #666;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+  }
+  .project-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+
+  .img-icon { font-size: 2.5rem; }
+
+  .project-body { padding: 1.5rem; }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .project-tech span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.55rem;
+    background: var(--mist);
+    color: var(--sage);
+    border: 1px solid rgba(61,107,94,0.2);
+  }
+  .project-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .project-body p {
+    font-size: 0.88rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* ─── TRAINING ─── */
+  #training {
+    background: var(--mist);
+  }
+
+  .training-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .training-header p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+  }
+
+  .training-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .training-card {
+    background: var(--cream);
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .training-media {
+    width: 100%; aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #c8d6d2 0%, #a0bab3 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+  }
+  .training-media img, .training-media video {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0;
+  }
+  .media-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #666;
+    z-index: 1;
+  }
+  .media-icon { font-size: 2rem; z-index: 1; }
+
+  .training-card-body { padding: 1.5rem; }
+  .training-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--sage);
+  }
+  .training-card-body p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* NYSC*/
+  #NYSC {
+    background: var(--mist);
+  }
+
+  .NYSC-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .training-header p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+  }
+
+  .training-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .training-card {
+    background: var(--cream);
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .training-media {
+    width: 100%; aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #c8d6d2 0%, #a0bab3 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 1rem;
+  }
+  .training-media img, .training-media video {
+    width: 100%; height: 100%; object-fit: cover;
+    position: absolute; inset: 0;
+  }
+  .media-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #666;
+    z-index: 1;
+  }
+  .media-icon { font-size: 2rem; z-index: 1; }
+
+  .training-card-body { padding: 1.5rem; }
+  .training-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--sage);
+  }
+  .training-card-body p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* ─── EDUCATION ─── */
+  #education { background: var(--cream); }
+
+  .edu-timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .edu-timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: var(--sage);
+    opacity: 0.3;
+  }
+
+  .edu-item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .edu-item::before {
+    content: '';
+    position: absolute; left: -2.65rem; top: 6px;
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    outline: 2px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .edu-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .edu-item .institution {
+    font-size: 0.9rem;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .edu-item .edu-detail {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  .cgpa-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: var(--sage);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── FOOTER / CONTACT ─── */
+  #contact {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 6rem 4rem 3rem;
+  }
+
+  #contact .section-label { justify-content: center; }
+  #contact .section-title { color: var(--cream); text-align: center; }
+
+  .contact-tagline {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.7);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(245,240,232,0.15);
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  .contact-link .cl-icon { font-size: 1.1rem; }
+
+  .footer-divider {
+    width: 80px; height: 1px;
+    background: rgba(245,240,232,0.15);
+    margin: 0 auto 1.5rem;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #home { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    #about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .about-visual { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .stack-grid { grid-template-columns: 1fr; }
+    .training-grid, .training-header { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">ICHA <span>DAVID</span> OGBAJI</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Tech Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#training">Training & Impact</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="ICHA DAVID OGBAJI RESUME.pdf" class="btn-resume">Download Resume</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-dots"></div>
+
+  <div class="hero-left reveal">
+    <div class="hero-tag">Portfolio 2026</div>
+    <h1 class="hero-heading">
+      Bridging Biochemical <em>Science</em> with Data &amp; Technology.
+    </h1>
+    <div class="hero-roles">
+      <span class="role-pill">B.Sc. Biochemist</span>
+      <span class="role-pill">Data Analyst</span>
+      <span class="role-pill">Web Developer</span>
+    </div>
+    <p class="hero-mission">
+      I use a scientific mindset and modern technology to solve problems in Data Analytics, Research, and Education. With a strong background in Biochemistry, I apply data tools to understand complex scientific facts while training others to build their own digital skills.
+       My goal is to use data-driven insights to drive innovation in Health and Technology
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch →</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal">
+    <div class="hero-photo-frame">
+      <!-- REPLACE src with your personal photo URL -->
+      <div class="hero-photo-placeholder">
+    
+        
+        <!--<span style="opacity:0.6">Replace with: &lt;img src=""alt="Icha David Ogbaji"&gt;</span>!-->
+        
+        <span style="opacity: 0.6;"><img src="IMG-20260116-WA0001.jpg" alt="Icha David Ogbaji"></span>
+        
+      </div>
+      <div class="hero-stat-badge">
+        <span class="stat-num">4.28</span>
+        <span class="stat-label">CGPA / 5.00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Science Meets <em>Innovation</em></h2>
+    <p>I am a results-driven professional with a solid foundation in the biological sciences and a deep expertise in technical problem-solving. Having graduated with a Bachelor of Science in Biochemistry from the Federal University of Lafia (4.28/5.00 CGPA), I apply the same scientific precision to data analysis and software development.</p>
+    <p>My current focus lies at the intersection of Bioinformatics and Computational Biology. I am also committed to bridging the digital divide by training the next generation of data-literate professionals.</p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <span class="num">4.28</span>
+        <span class="desc">CGPA — Second Class Honors Division</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">3+</span>
+        <span class="desc">Technical Domains Mastered</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">∞</span>
+        <span class="desc">Passion for Innovation &amp; Impact</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-image-wrap">
+      <!-- REPLACE with another personal/professional photo -->
+      <div class="about-img-placeholder">
+        <span style="font-size:2rem">📸</span>
+        
+        <span style="opacity: 0.7; font-size:0.65rem"><img src="image 3.png" alt="ICHA DAVID OGBAJI"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">The <em>Toolbox</em></h2>
+  <div class="stack-grid">
+    <div class="stack-card reveal">
+      <span class="stack-card-icon">📊</span>
+      <h3>Data Analytics</h3>
+      <div class="stack-tools">
+        <span class="tool-tag">Microsoft Excel</span>
+        <span class="tool-tag">Power BI</span>
+        <span class="tool-tag">SQL</span>
+        <span class="tool-tag">SPSS</span>
+      </div>
+    </div>
+    <div class="stack-card reveal">
+      <span class="stack-card-icon">💻</span>
+      <h3>Programming &amp; Web</h3>
+      <div class="stack-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">HTML</span>
+        <span class="tool-tag">CSS</span>
+       
+      </div>
+    </div>
+    <div class="stack-card reveal">
+      <span class="stack-card-icon">🧬</span>
+      <h3>Specialized Domain</h3>
+      <div class="stack-tools">
+        <span class="tool-tag">Biochemical Research</span>
+        <span class="tool-tag">Bioinformatics</span>
+        <span class="tool-tag">Technical Mentorship</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work &amp; Projects</div>
+  <h2 class="section-title">The <em>Evidence</em></h2>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-img">
+        <!-- REPLACE with your Dashboard screenshot -->
+        <span class="img-icon"></span>
+        <span class="media-label" style="opacity:0.6"><img src="Screenshot (81).png" alt=""></span>
+      </div>
+      <div class="project-body">
+        <div class="project-tech">
+          <span>Excel</span>
+          <span>Power BI</span>
+        </div>
+        <h3>Data Insights Dashboard</h3>
+        <p>Developed a comprehensive data visualization focusing on <strong>Global Sales Trends</strong> and 
+          revenue metrics. Built to surface <strong>actionable insights</strong> from complex retail datasets, 
+          this dashboard tracks regional performance and product distribution efficiency using 
+          <strong>Power BI</strong> and <strong>Excel</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Add more project cards here as needed -->
+    <div class="project-card reveal">
+      <div class="project-img">
+        <span class="img-icon"></span>
+        <span class="media-label" style="opacity:0.6"><img src="AI.jpg" alt=""></span>
+      </div>
+      <div class="project-body">
+        <div class="project-tech">
+          <span>Power BI</span>
+          <span>Data Modelling</span>
+        </div>
+        <h3>Data visualization</h3>
+        <p>Developed a comprehensive data visualization project analyzing which 
+          <strong>AI qualifications and technical skills</strong> command the highest 
+          salaries in the current market. I used <strong>Power BI</strong> and <strong>Excel</strong> 
+          to clean and model a complex dataset, turning raw numbers into 
+          strategic career insights</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING & IMPACT -->
+<section id="training">
+  <div class="training-header">
+    <div class="reveal">
+      <div class="section-label">Leadership &amp; Impact</div>
+      <h2 class="section-title">Leading the Technical <em>Revolution</em></h2>
+    </div>
+    <div class="reveal">
+      <p><strong>Lead Trainer at Cloud Tech Connect</strong> — committed to bridging the digital divide by empowering the next generation of data-literate professionals across Nigeria.</p>
+    </div>
+  </div>
+  <div class="training-grid">
+    <div class="training-card reveal">
+      <div class="training-media">
+        <!-- REPLACE with your teaching video or photo -->
+        <span class="media-icon"></span>
+        <span class="media-label"></span>
+        <video width="100%" height="100%" controls poster="thumbnail-image.jpg" style="object-fit: cover; object-position: center;">
+          <source src="web.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="training-card-body">
+        <h3>Training in Action</h3>
+        <p>Facilitating an intensive session on Computer Fundamentals and Data Analysis for our inaugural cohort at Cloud Tech Connect.</p>
+      </div>
+    </div>
+    <div class="training-card reveal">
+      <div class="training-media">
+        <!-- REPLACE with mentorship photos -->
+        <span class="media-icon"></span>
+        <span class="media-label"></span>
+        <video width="100%" height="100%" controls poster="thumbnail-image.jpg" style="object-fit: cover; object-position: center;">
+          <source src="cloud.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="training-card-body">
+        <h3>Mentorship &amp; Outreach</h3>
+        <p>Empowering <strong>NYSC Corps Members</strong> at Cloud Tech Connect through specialized 
+          training in Data Analysis. I lead hands-on sessions to equip fellow colleagues with 
+          market-ready digital skills, fostering a community of data-literate professionals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--NATIONAL YOUTH SERVICE CORPS-->
+<section id="nysc-impact">
+  <div class="training-header">
+    <div class="reveal">
+      <div class="section-label">National Service & Community Impact</div>
+      <h2 class="section-title">Serving with <em>Purpose</em> & Technology</h2>
+    </div>
+    <div class="reveal">
+      <p><strong>Corps Member (NYSC)</strong> — Leveraging my service year to drive technical literacy and academic excellence through community development and specialized training.</p>
+    </div>
+  </div>
+
+  <div class="training-grid">
+    <div class="training-card reveal">
+      <div class="training-media">
+        <img src="siwes student.jpg" alt="Icha David training students" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      <div class="training-card-body">
+        <h3>Technical Empowerment</h3>
+        <p>Training of Siwes students at **Cloud Tech Connet**. Transitioning from computer basics to data proficiency as part of my professional contribution during my service year.</p>
+      </div>
+    </div>
+
+    <div class="training-card reveal">
+      <div class="training-media">
+        <img src="federal uni.jpg" alt="Mentorship session" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="training-card-body">
+        <h3>Mentorship & Outreach</h3>
+        <p>Providing academic guidance and technical workshops for undergraduate students and secondary schools, focusing on the intersection of Science and Digital Skills.</p>
+      </div>
+    </div>
+
+    <div class="training-card reveal">
+      <div class="training-media">
+        <img src="NYSC.jpg" alt="Official NYSC Portrait" style="width:100%; height:100%; object-fit:cover; object-position: 20% 25%;">
+        
+       
+      </div>
+      <div class="training-card-body">
+        <h3>Community Development</h3>
+        <p>Engaging in CDS (Community Development Service) projects aimed at improving technical literacy within the local community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic &amp; Professional Path</div>
+  <h2 class="section-title">Education &amp; <em>Future Path</em></h2>
+  <div class="edu-timeline">
+    <div class="edu-item reveal">
+      <span class="edu-year">2019 – 2024</span>
+      <h3>B.Sc. Biochemistry — First Class Honors Division</h3>
+      <div class="institution">Federal University of Lafia</div>
+      <div class="edu-detail">Graduated with Second class upper(Honours), applying scientific rigor to biological and computational challenges. Specialization focus in biochemical research and analytical methodologies.</div>
+      <span class="cgpa-badge">CGPA: 4.28 / 5.00</span>
+    </div>
+    <div class="edu-item reveal">
+      <span class="edu-year">Ongoing</span>
+      <h3>National Youth Service Corps (NYSC)</h3>
+      <div class="institution">Community Technical Empowerment</div>
+      <div class="edu-detail">Channeling professional expertise into national service through community technical education, digital literacy programs, and youth empowerment initiatives.</div>
+    </div>
+    <div class="edu-item reveal">
+      <span class="edu-year">Continuous</span>
+      <h3>Professional Development</h3>
+      <div class="institution">Data Science, Bioinformatics &amp; Web Development</div>
+      <div class="edu-detail">Ongoing self-directed learning in Python for bioinformatics, computational biology, advanced data analytics, and full-stack web development to remain at the frontier of technical innovation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's Build Something <em>Meaningful</em> Together.</h2>
+  <p class="contact-tagline">Whether you're seeking a data analyst, web developer, or a passionate collaborator at the intersection of science and technology — let's connect.</p>
+
+    <div class="contact-links">
+      <a href="mailto:ichadavidgreat@gmail.com" class="contact-link">
+        <span class="cl-icon">✉️</span>
+        ichadavidgreat@gmail.com
+      </a>
+    
+      <a href="https://github.com/Davidogbaji/Davidogbaji" class="contact-link" target="_blank" rel="noopener">
+        <span class="cl-icon">💻</span>
+        github.com/Davidogbaji
+      </a>
+    
+      <a href="tel:+2348103629219" class="contact-link">
+        <span class="cl-icon">📞</span>
+        +234 810 362 9219
+      </a>
+      
+      <a href="https://wa.me/2348103629219" class="contact-link" target="_blank" rel="noopener">
+        <span class="cl-icon">💬</span>
+        WhatsApp Me
+      </a>
+    </div>
+    <a href="#" class="contact-link">
+      <span class="cl-icon">📍</span>
+      Nigeria
+    </a>
+    
+  </div>
+
+  <div class="footer-divider"></div>
+  <p class="footer-copy">© 2026 Icha David Ogbaji. All rights reserved.</p>
+</section>
+
+<script>
+  // Scroll-triggered reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 24px rgba(13,13,13,0.10)' : 'none';
+  });
+</script>
+</body>
+</html>
